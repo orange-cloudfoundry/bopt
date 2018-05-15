@@ -1,0 +1,24 @@
+language: go
+go:
+- "1.10"
+
+install:
+- go get github.com/onsi/ginkgo/ginkgo
+- go get github.com/onsi/gomega
+
+script: go test -v ./... -args -ginkgo.randomizeAllSpecs -ginkgo.trace
+
+deploy:
+  provider: releases
+  api_key:
+    secure: VNZpAfYB3C9G3n182j2atzcUXu9RdrFgfZk3f1eQwrqJ4t8CXa67HEFcz/WoKePq2KKUQtsgVMpewKiLN7ZYjbkXF+POScI2B4+dZ9zthaCPNnLghw5ucIviHVI5u1wC15anRhi9Nfgc3p7eCtRKgWA2+GtuqPpmVjYyorbkWpNF1XqE5LE3478loOzLoSDH7dTPaNXSpLAQ3Yv/6CSmZR+ntUh23TEsxUdfESKoowOt0tofj3z8rXT+3mgjd6VQF4Py2i3dTxXVeWcOgRdxvMOkAyzAAODdVfmOQW/ROYFIQwGlFjdl4Gu608KJQCkryRGE9ZaIYRsMxcIjbEFntkg7hoBupKHt8oq/4NCIAL51GlitAkNUrPQMGIMi20jxKDJJ9Y9uZ767PVFFQaVrLk/PYFh+w+lfnWZ/eWiv0Zno96i5t3Z2Dkq/KY7dOK7YD8MmUZgVZ1+gH7i+Yp7ooyo9XKzpA/E+SW3tqNowSq9lduciYXcE30HLx4Hkjdsn74DnsKWrLYs9507pHsFNB0A2oDYeRvGwM4bjfeqtGS/xaow4vGIo21eAD2T/EZjAKMQoKOELF2diPpY1M7mOEe3lDkju40K6ULygBYniUChlHLEZyqsUEiVqLpL+XFmUAtQQ+BLLOgITudUNnfmNHa4WOPibMEOg5xSd9tXH7/o=
+  file:
+  - out/bopt_darwin_amd64
+  - out/bopt_linux_386
+  - out/bopt_linux_amd64
+  - out/bopt_windows_386.exe
+  - out/bopt_windows_amd64.exe
+  skip_cleanup: true
+  on:
+    tags: true
+  all_branches: true
